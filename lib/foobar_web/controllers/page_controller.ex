@@ -5,7 +5,31 @@ defmodule FoobarWeb.PageController do
     render(conn, "index.html")
   end
 
-  def fizzbuzz(conn, _params) do
-    json(conn, %{message: "return foo, bar or foobar here"})
+  def fizzbuzz(conn, params) do
+    if params["foo"] == "true" and params["bar"] == "true" do
+      fooBarFunction(conn)
+    end
+    
+    if params["foo"] == "true" do
+      fooFunction(conn)
+    end
+      
+    if params["bar"] == "true" do
+      barFunction(conn)
+    end
+
+    json(conn, %{message: "foo and bar were not passed"})
+  end
+
+  def fooFunction(conn) do
+    json(conn, %{message: "foo"})
+  end
+
+  def barFunction(conn) do
+    json(conn, %{message: "bar"})
+  end
+
+  def fooBarFunction(conn) do
+    json(conn, %{message: "foobar"})
   end
 end
